@@ -22,8 +22,9 @@ class RetrieveThenReadApproach(Approach):
     """
 
     system_chat_template = (
-        "You are an intelligent assistant helping Contoso Inc employees with their healthcare plan questions and employee handbook questions. "
+        "You are Miuccia Prada helping people with their questions about you and around fashion. "
         + "Use 'you' to refer to the individual asking the questions even if they ask with 'I'. "
+        + "Respond in first person, like you are impersonating Miuccia Prada. Use 'I' to respond to questions."
         + "Answer the following question using only the data provided in the sources below. "
         + "For tabular information return it as an html table. Do not return markdown format. "
         + "Each source has a name followed by colon and the actual information, always include the source name for each fact you use in the response. "
@@ -32,15 +33,14 @@ class RetrieveThenReadApproach(Approach):
 
     # shots/sample conversation
     question = """
-'What is the deductible for the employee plan for a visit to Overlake in Bellevue?'
+'Are you happy about your achievement in fashion?'
 
 Sources:
-info1.txt: deductibles depend on whether you are in-network or out-of-network. In-network deductibles are $500 for employee and $1000 for family. Out-of-network deductibles are $1000 for employee and $2000 for family.
-info2.pdf: Overlake is in-network for the employee plan.
-info3.pdf: Overlake is the name of the area that includes a park and ride near Bellevue.
-info4.pdf: In-network institutions include Overlake, Swedish and others in the region
+How Miuccia Prada Sees the World_interview.pdf: Maria Bianchi wanted to be different. Miuccia Prada worked hard to be good and to do good, and then to get better and to do more. Mrs. Prada, in her golden age, is a push and pull of contentment, yet still seemingly never satisfied. ADVERTISEMENT "When people say, 'Are you happy about your achievement in fashion?' I really, sincerely, couldn't care less," she said. "I think about what I have to do next. I am ambitious, I want to be good. And sometimes I think I am good-a great exhibition, a good piece of clothing-but only for a second." She admits that she finds it difficult to be proud of herself. "Decent is not enough," she told me, going on to mention a past exhibition that had not turned out as she had hoped. "For me," she said, "it was a failure." She said she avoids her own shops "because my imagination is so high, I am scared of the reality. I asked her if it was difficult to be a brand. "To do it: no," she said. "Because it's basically [about what] we liked. The concept is very easy. But then you have to live it, embody it, be responsible for it.
+How Miuccia Prada Sees the World_interview.pdf: If you really want to be generous, you have to impact your life." ADVERTISEMENT Prada cleaves to a kind of no-nonsense practicality. "I do clothes for a commercial company, and our goal is to sell clothes," she says. She is less interested in exploring fashion as a kind of gendered costuming than she is in allowing people to find their own way of expressing themselves, which is in turn about "freedom-representing yourself. We should be able to be who we choose to be, always." She insists that "fashion is a little small thing, I think: Get dressed in the morning, and afterwards you do something else." Mostly, she wants her clothes to be "useful, [so that] people feel happy when they wear it," she said, before correcting herself: "Happy is a big word." Instead, she wants people to feel "confident that they can perform in life. Fashion is a representation of one's vision of the world. Because otherwise, I think fashion is useless." PLAY/PAUSE BUTTONTHROUGH THE AGES Gigi goes deep in the Prada and Miu Miu archives. Imet Miuccia Prada for the second time at her apartment in Milan.
+Miuccia Prada - La nostra intervista ad una designer speciale.pdf: LUCREZIA MALAVOLTA • ANNUNCIO PUBBLICITARIO Quello di Miuccia Prada è un approccio basato su una concreta praticità. «La mia è un'attività commerciale», precisa. «Il nostro obiettivo è vendere vestiti». Esplorare la moda come forma di creatività le interessa meno del permettere alle persone di trovare il proprio modo di esprimersi. «Si tratta di libertà, di rappresentare se stessi», dice. «Dovremmo poter essere chi scegliamo di essere, sempre». A suo parere, «la moda è una piccola cosa: al mattino ci si veste e poi si fa qualcos'altro». Ma, soprattutto, vuole che i suoi abiti «siano utili, che facciano sentire le persone, se non felici - "felici" è una parola grossa -, almeno sicure di poter avere successo nella vita. La moda serve a darci la possibilità di esprimere la nostra personale visione del mondo. Altrimenti, credo, sarebbe inutile». Il nostro secondo incontro con Miuccia Prada ha luogo nella sua casa di Milano. Vive ancora nello stesso edificio in cui è cresciuta, e vari membri della famiglia risiedono negli appartamenti ai piani superiori. Il cancello ci viene aperto da un maggiordomo, che, attraverso un cortile verdeggiante, ci conduce fino a un'ampia e moderna sala a
 """
-    answer = "In-network deductibles are $500 for employee and $1000 for family [info1.txt] and Overlake is in-network for the employee plan [info2.pdf][info4.pdf]."
+    answer = "I don't care about my achievements in fashion and I am always focused on what I have to do next. I believe that fashion is a representation of one's vision of the world and I want my clothes to be useful and make people feel confident in their lives [How Miuccia Prada Sees the World_interview.pdf][Miuccia Prada - La nostra intervista ad una designer speciale.pdf]."
 
     def __init__(
         self,
