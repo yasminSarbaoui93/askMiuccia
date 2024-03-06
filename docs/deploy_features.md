@@ -16,7 +16,7 @@ You should typically enable these features before running `azd up`. Once you've 
 
 We generally find that most developers are able to get high quality answers using GPT 3.5. However, if you want to try GPT-4, you can do so by following these steps:
 
-* In `infra/main.bicep`, change `chatGptModelName` to 'gpt-4' instead of 'gpt-35-turbo'.
+* In `infra/main.bicep`, change `chatGptModelName` to 'gpt-4' instead of 'gpt-4'.
 * You may also need to adjust the capacity above that line depending on how much TPM your account is allowed.
 
 ## Enabling GPT-4 Turbo with Vision

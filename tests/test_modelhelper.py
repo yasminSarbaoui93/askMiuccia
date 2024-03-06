@@ -8,16 +8,16 @@ from core.modelhelper import (
 
 
 def test_get_token_limit():
-    assert get_token_limit("gpt-35-turbo") == 4000
+    assert get_token_limit("gpt-4") == 4000
     assert get_token_limit("gpt-3.5-turbo") == 4000
-    assert get_token_limit("gpt-35-turbo-16k") == 16000
+    assert get_token_limit("gpt-4-16k") == 16000
     assert get_token_limit("gpt-3.5-turbo-16k") == 16000
     assert get_token_limit("gpt-4") == 8100
     assert get_token_limit("gpt-4-32k") == 32000
 
 
 def test_get_token_limit_error():
-    with pytest.raises(ValueError, match="Expected model gpt-35-turbo and above"):
+    with pytest.raises(ValueError, match="Expected model gpt-4 and above"):
         get_token_limit("gpt-3")
 
 
@@ -28,7 +28,7 @@ def test_num_tokens_from_messages():
         # 1 token : 5 tokens
         "content": "Hello, how are you?",
     }
-    model = "gpt-35-turbo"
+    model = "gpt-4"
     assert num_tokens_from_messages(message, model) == 9
 
 
@@ -70,14 +70,14 @@ def test_num_tokens_from_messages_error():
         # 1 token : 5 tokens
         "content": {"key": "value"},
     }
-    model = "gpt-35-turbo"
+    model = "gpt-4"
     with pytest.raises(ValueError, match="Could not encode unsupported message value type"):
         num_tokens_from_messages(message, model)
 
 
 def test_get_oai_chatmodel_tiktok_mapped():
-    assert get_oai_chatmodel_tiktok("gpt-35-turbo") == "gpt-3.5-turbo"
-    assert get_oai_chatmodel_tiktok("gpt-35-turbo-16k") == "gpt-3.5-turbo-16k"
+    assert get_oai_chatmodel_tiktok("gpt-4") == "gpt-3.5-turbo"
+    assert get_oai_chatmodel_tiktok("gpt-4-16k") == "gpt-3.5-turbo-16k"
 
 
 def test_get_oai_chatmodel_tiktok_unmapped():

@@ -12,7 +12,7 @@ def chat_approach():
         search_client=None,
         auth_helper=None,
         openai_client=None,
-        chatgpt_model="gpt-35-turbo",
+        chatgpt_model="gpt-4",
         chatgpt_deployment="chat",
         embedding_deployment="embeddings",
         embedding_model="text-",
@@ -29,7 +29,7 @@ def test_get_search_query(chat_approach):
 	"id": "chatcmpl-81JkxYqYppUkPtOAia40gki2vJ9QM",
 	"object": "chat.completion",
 	"created": 1695324963,
-	"model": "gpt-35-turbo",
+	"model": "gpt-4",
 	"prompt_filter_results": [
 		{
 			"prompt_index": 0,
@@ -91,7 +91,7 @@ def test_get_search_query(chat_approach):
 
 
 def test_get_search_query_returns_default(chat_approach):
-    payload = '{"id":"chatcmpl-81JkxYqYppUkPtOAia40gki2vJ9QM","object":"chat.completion","created":1695324963,"model":"gpt-35-turbo","prompt_filter_results":[{"prompt_index":0,"content_filter_results":{"hate":{"filtered":false,"severity":"safe"},"self_harm":{"filtered":false,"severity":"safe"},"sexual":{"filtered":false,"severity":"safe"},"violence":{"filtered":false,"severity":"safe"}}}],"choices":[{"index":0,"finish_reason":"function_call","message":{"content":"","role":"assistant"},"content_filter_results":{}}],"usage":{"completion_tokens":19,"prompt_tokens":425,"total_tokens":444}}'
+    payload = '{"id":"chatcmpl-81JkxYqYppUkPtOAia40gki2vJ9QM","object":"chat.completion","created":1695324963,"model":"gpt-4","prompt_filter_results":[{"prompt_index":0,"content_filter_results":{"hate":{"filtered":false,"severity":"safe"},"self_harm":{"filtered":false,"severity":"safe"},"sexual":{"filtered":false,"severity":"safe"},"violence":{"filtered":false,"severity":"safe"}}}],"choices":[{"index":0,"finish_reason":"function_call","message":{"content":"","role":"assistant"},"content_filter_results":{}}],"usage":{"completion_tokens":19,"prompt_tokens":425,"total_tokens":444}}'
     default_query = "hello"
     chatcompletions = ChatCompletion.model_validate(json.loads(payload), strict=False)
     query = chat_approach.get_search_query(chatcompletions, default_query)
@@ -102,7 +102,7 @@ def test_get_search_query_returns_default(chat_approach):
 def test_get_messages_from_history(chat_approach):
     messages = chat_approach.get_messages_from_history(
         system_prompt="You are a bot.",
-        model_id="gpt-35-turbo",
+        model_id="gpt-4",
         history=[
             {"role": "user", "content": "What happens in a performance review?"},
             {
@@ -128,7 +128,7 @@ def test_get_messages_from_history(chat_approach):
 def test_get_messages_from_history_truncated(chat_approach):
     messages = chat_approach.get_messages_from_history(
         system_prompt="You are a bot.",
-        model_id="gpt-35-turbo",
+        model_id="gpt-4",
         history=[
             {"role": "user", "content": "What happens in a performance review?"},
             {
@@ -149,7 +149,7 @@ def test_get_messages_from_history_truncated(chat_approach):
 def test_get_messages_from_history_truncated_longer(chat_approach):
     messages = chat_approach.get_messages_from_history(
         system_prompt="You are a bot.",  # 8 tokens
-        model_id="gpt-35-turbo",
+        model_id="gpt-4",
         history=[
             {"role": "user", "content": "What happens in a performance review?"},  # 10 tokens
             {
@@ -181,7 +181,7 @@ def test_get_messages_from_history_truncated_break_pair(chat_approach):
     """Tests that the truncation breaks the pair of messages."""
     messages = chat_approach.get_messages_from_history(
         system_prompt="You are a bot.",  # 8 tokens
-        model_id="gpt-35-turbo",
+        model_id="gpt-4",
         history=[
             {"role": "user", "content": "What happens in a performance review?"},  # 10 tokens
             {
@@ -217,7 +217,7 @@ def test_get_messages_from_history_system_message(chat_approach):
     """Tests that the system message token count is considered."""
     messages = chat_approach.get_messages_from_history(
         system_prompt="Assistant helps the company employees with their healthcare plan questions, and questions about the employee handbook. Be brief in your answers.",  # 24 tokens
-        model_id="gpt-35-turbo",
+        model_id="gpt-4",
         history=[
             {"role": "user", "content": "What happens in a performance review?"},  # 10 tokens
             {
