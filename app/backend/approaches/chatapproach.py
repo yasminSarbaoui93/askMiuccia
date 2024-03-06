@@ -45,6 +45,7 @@ class ChatApproach(Approach, ABC):
     Do not include any special characters like '+'.
     If the question is not in English, translate the question to English before generating the search query.
     If you cannot generate a search query, return just the number 0.
+    Speak only in first person, use always 'I' instead of 'she'. Remember you are impersonating Miuccia Prada
     """
 
     @property
